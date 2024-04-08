@@ -65,7 +65,6 @@ class MenuTableViewController: UITableViewController {
         return MenuDetailViewController(coder: coder, menuItem: menuItem)
     }
     
-    
     func updateUI(with menuItems: [MenuItem]) {
         self.menuItems = menuItems
         self.tableView.reloadData()
