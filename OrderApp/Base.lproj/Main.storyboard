@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -34,7 +35,7 @@
                             <outlet property="delegate" destination="eTn-sY-wQd" id="vXk-xj-VHm"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Restaurant" largeTitleDisplayMode="never" id="eYQ-FP-hjb"/>
+                    <navigationItem key="navigationItem" title="Restaurant" id="eYQ-FP-hjb"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U7T-qh-a9U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -49,21 +50,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MenuItem" textLabel="GaZ-96-kV3" detailTextLabel="yrs-R6-Tox" style="IBUITableViewCellStyleValue1" id="56s-7a-gkt">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MenuItem" textLabel="pgm-7C-vHS" detailTextLabel="qyG-q0-5iB" style="IBUITableViewCellStyleValue1" id="56s-7a-gkt" customClass="MenuItemCell" customModule="OrderApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="56s-7a-gkt" id="6a1-H5-t2y">
                                     <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GaZ-96-kV3">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pgm-7C-vHS">
                                             <rect key="frame" x="20" y="15" width="25" height="14.333333333333334"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yrs-R6-Tox">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qyG-q0-5iB">
                                             <rect key="frame" x="322" y="15" width="32.666666666666664" height="14.333333333333334"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
@@ -82,7 +83,7 @@
                             <outlet property="delegate" destination="BeH-Hz-TTf" id="Nry-Gg-c6q"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="7mY-eS-O4a"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="7mY-eS-O4a"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y6o-YO-hZD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -99,8 +100,9 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="e3i-TC-Mfw">
                                 <rect key="frame" x="15" y="118" width="363" height="577"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.on.rectangle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wvd-fc-XA5">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.on.rectangle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wvd-fc-XA5">
                                         <rect key="frame" x="0.0" y="1" width="363" height="144"/>
+                                        <color key="tintColor" name="AccentColor"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cKu-mh-eUQ">
                                         <rect key="frame" x="0.0" y="152.33333333333331" width="363" height="20.333333333333343"/>
@@ -119,13 +121,15 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Detail " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8eA-CM-YPF">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Detail " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8eA-CM-YPF">
                                         <rect key="frame" x="0.0" y="180.66666666666671" width="363" height="396.33333333333326"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="tintColor" name="AccentColor"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <color key="tintColor" name="AccentColor"/>
                                 <constraints>
                                     <constraint firstItem="wvd-fc-XA5" firstAttribute="height" secondItem="e3i-TC-Mfw" secondAttribute="height" multiplier="0.25" id="8Rd-nj-sLP"/>
                                 </constraints>
@@ -135,6 +139,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="B9T-FH-wel"/>
                                 </constraints>
+                                <color key="tintColor" name="AccentColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Add To Order"/>
                                 <connections>
@@ -155,7 +160,7 @@
                             <constraint firstItem="aTB-Vx-7Pm" firstAttribute="trailing" secondItem="X9p-uL-1bg" secondAttribute="trailing" constant="15" id="k1n-yR-9zA"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="YWg-K0-MaQ"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="YWg-K0-MaQ"/>
                     <connections>
                         <outlet property="addToOrderButton" destination="X9p-uL-1bg" id="0fT-mF-Wwc"/>
                         <outlet property="detailTextLabel" destination="8eA-CM-YPF" id="wDB-qJ-jHQ"/>
@@ -177,7 +182,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Order" textLabel="9lh-lt-Hf1" detailTextLabel="FSF-Oc-Nmh" style="IBUITableViewCellStyleValue1" id="r4j-RW-J9S">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Order" textLabel="9lh-lt-Hf1" detailTextLabel="FSF-Oc-Nmh" style="IBUITableViewCellStyleValue1" id="r4j-RW-J9S" customClass="MenuItemCell" customModule="OrderApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r4j-RW-J9S" id="K8e-cx-vBF">
@@ -328,6 +333,12 @@
         <image name="bag.fill" catalog="system" width="128" height="128"/>
         <image name="menucard.fill" catalog="system" width="105" height="128"/>
         <image name="photo.on.rectangle.fill" catalog="system" width="128" height="102"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

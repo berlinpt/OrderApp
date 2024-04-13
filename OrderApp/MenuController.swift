@@ -5,7 +5,7 @@
 //  Created by Berlin Thomas on 2024-04-06.
 //
 
-import Foundation
+import UIKit
 
 class MenuController {
     
@@ -26,6 +26,7 @@ class MenuController {
         case categoriesNotFound
         case menuItemsNotFound
         case orderRequestFailed
+        case imageDataMissing
     }
     
     func fetchCategories() async throws -> [String] {
@@ -60,6 +61,19 @@ class MenuController {
         let menuResponse = try decoder.decode(MenuResponse.self, from: data)
         
         return menuResponse.items
+    }
+    
+    func fetchImage(from url: URL) async throws -> UIImage {
+        let (data, response) = try await URLSession.shared.data(from: url)
+        
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw MenuControllerError.imageDataMissing
+        }
+        
+        guard let image = UIImage(data: data) else {
+            throw MenuControllerError.imageDataMissing
+        }
+        return image
     }
     
     func submitOrder(forMenuIDs menuIDs: [Int]) async throws -> MinutesToPrepare {

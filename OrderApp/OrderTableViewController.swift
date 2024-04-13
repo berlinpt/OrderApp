@@ -8,6 +8,7 @@
 import UIKit
 
 class OrderTableViewController: UITableViewController {
+    var imageLoadTasks: [IndexPath: Task<Void, Never>] = [:]
     var minutesToPrepareOrder = 0
 
     override func viewDidLoad() {
@@ -16,9 +17,13 @@ class OrderTableViewController: UITableViewController {
         navigationItem.leftBarButtonItem = editButtonItem
         
         NotificationCenter.default.addObserver(tableView!, selector: #selector(UITableView.reloadData), name: MenuController.orderUpdatedNotification, object: nil)
-        
-
+    
     }
+    override func viewDidDisappear(_ animated: Bool) {
+        // Cancel image fetching tasks that are no longer needed
+        imageLoadTasks.forEach { key, value in value.cancel() }
+    }
+    
 
     // MARK: - Table view data source
 
@@ -43,6 +48,14 @@ class OrderTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // Cancel the image fetching task if it's no longer needed
+        imageLoadTasks[indexPath]?.cancel()
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0
+    }
     
     @IBSegueAction func confirmOrder(_ coder: NSCoder) -> OrderConfirmationViewController? {
         return OrderConfirmationViewController(coder: coder, minutesToPrepare: minutesToPrepareOrder)
@@ -56,12 +69,25 @@ class OrderTableViewController: UITableViewController {
     
     
     func configure(_ cell: UITableViewCell, forItemAt indexPath: IndexPath) {
+        
+        guard let cell = cell as? MenuItemCell else { return }
+        
         let menuItem = MenuController.shared.order.menuItems[indexPath.row]
         
-        var content = cell.defaultContentConfiguration()
-        content.text = menuItem.name
-        content.secondaryText = menuItem.price.formatted(.currency(code: "usd"))
-        cell.contentConfiguration = content
+        
+        cell.itemName = menuItem.name
+        cell.price = menuItem.price
+        cell.image = nil
+        
+        imageLoadTasks[indexPath] = Task.init {
+            if let image = try? await MenuController.shared.fetchImage(from: menuItem.imageURL) {
+                if let currentIndexPath = self.tableView.indexPath(for: cell), currentIndexPath == indexPath {
+                    cell.image = image
+                }
+            }
+            imageLoadTasks[indexPath] = nil
+        }
+        
     }
     
     
@@ -103,3 +129,4 @@ class OrderTableViewController: UITableViewController {
     }
     
 }
+
