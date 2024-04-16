@@ -60,7 +60,59 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
     }
-
-
+    
+    func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
+        return MenuController.shared.userActivity
+    }
+    
+    func scene(_ scene: UIScene, restoreInteractionStateWith stateRestorationActivity: NSUserActivity) {
+        if let restoredOrder = stateRestorationActivity.order {
+            MenuController.shared.order = restoredOrder
+        }
+        
+        guard
+            let restorationController = StateRestorationController(userActivity: stateRestorationActivity),
+            let tabBarController = window?.rootViewController as? UITabBarController,
+            tabBarController.viewControllers?.count == 2,
+            let categoryTableViewController = (tabBarController.viewControllers?[0] as? UINavigationController)?.topViewController as? CategoryTableViewController
+        
+        
+        else {
+            return
+        }
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        
+        switch restorationController {
+        case .categories:
+            break
+        case .order:
+            tabBarController.selectedIndex = 1
+        case .menu(let category):
+            let menuTableViewController = storyBoard.instantiateViewController(identifier: restorationController.identifier.rawValue, creator: { (coder) in
+                return MenuTableViewController(coder: coder, category: category)
+            })
+            categoryTableViewController.navigationController?.pushViewController(menuTableViewController, animated: true)
+            
+        case .menuItemDetail(let menuItem):
+            let menuTableViewController = storyBoard.instantiateViewController(identifier: StateRestorationController.Identifier.menu.rawValue,
+                                                                               creator: { (coder) in
+                return MenuTableViewController(coder: coder, category: menuItem.category)
+                
+            })
+            
+            let menuItemDetailViewController = storyBoard.instantiateViewController(identifier: restorationController.identifier.rawValue) { (coder) in
+                return MenuDetailViewController(coder: coder, menuItem: menuItem)
+                
+            }
+            
+            categoryTableViewController.navigationController?.pushViewController(menuTableViewController, animated: false)
+            categoryTableViewController.navigationController?.pushViewController(menuItemDetailViewController, animated: false)
+            
+        }
+        
+    }
+        
+    
 }
 

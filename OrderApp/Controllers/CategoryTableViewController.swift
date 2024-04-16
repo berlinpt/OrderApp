@@ -9,7 +9,6 @@ import UIKit
 
 class CategoryTableViewController: UITableViewController {
     
-    //let menuController = MenuController()
     var categories = [String]()
 
     override func viewDidLoad() {
@@ -25,16 +24,19 @@ class CategoryTableViewController: UITableViewController {
             }
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MenuController.shared.updateUserActivity(with: .categories)
+    }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return categories.count
     }
 

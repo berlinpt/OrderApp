@@ -10,6 +10,7 @@ import UIKit
 class MenuController {
     
     static let shared = MenuController()
+    var userActivity = NSUserActivity(activityType: "com.beustech.OrderApp.order")
     static let orderUpdatedNotification = Notification.Name("MenuController.orderUpdated")
     
     let baseURL = URL(string: "http://localhost:8080/")!
@@ -17,6 +18,7 @@ class MenuController {
     var order = Order() {
         didSet {
             NotificationCenter.default.post(name: MenuController.orderUpdatedNotification, object: nil)
+            userActivity.order = order
         }
     }
     
@@ -99,5 +101,17 @@ class MenuController {
         let orderResponse = try decoder.decode(OrderResponse.self, from: data)
         
         return orderResponse.prepTime
+    }
+    
+    func updateUserActivity(with controller: StateRestorationController) {
+        switch controller {
+        case .menu(let category):
+            userActivity.menuCategory = category
+        case .menuItemDetail(let menuItem):
+            userActivity.menuItem = menuItem
+        case .order, .categories:
+            break
+        }
+        userActivity.controllerIdentifier = controller.identifier
     }
 }

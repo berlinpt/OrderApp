@@ -10,7 +10,6 @@ import UIKit
 class MenuTableViewController: UITableViewController {
     
     let category: String
-    //let menuController = MenuController()
     var menuItems: [MenuItem] = []
     var imageLoadTasks: [IndexPath: Task<Void, Never>] = [:]
     
@@ -37,6 +36,11 @@ class MenuTableViewController: UITableViewController {
             }
         }
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MenuController.shared.updateUserActivity(with: .menu(category: category))
     }
     
     override func viewDidDisappear(_ animated: Bool) {

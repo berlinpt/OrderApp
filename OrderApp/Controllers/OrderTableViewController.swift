@@ -19,6 +19,11 @@ class OrderTableViewController: UITableViewController {
         NotificationCenter.default.addObserver(tableView!, selector: #selector(UITableView.reloadData), name: MenuController.orderUpdatedNotification, object: nil)
     
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        MenuController.shared.updateUserActivity(with: .order)
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         // Cancel image fetching tasks that are no longer needed
         imageLoadTasks.forEach { key, value in value.cancel() }
